@@ -1,5 +1,5 @@
-import { AppSidebar } from "@/components/shared/AppSidebar";
 import { AppHeader } from "@/components/shared/AppHeader";
+import { AppSidebar } from "@/components/shared/AppSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -34,9 +34,7 @@ export default function RootLayout({
           <AppSidebar />
           <main className="flex-1 w-full flex flex-col">
             <AppHeader />
-            <div className="flex-1 overflow-auto">
-              {children}
-            </div>
+            <div className="flex-1 overflow-auto">{children}</div>
           </main>
         </SidebarProvider>
       </body>

@@ -1,9 +1,14 @@
-import * as React from 'react';
-import { Badge } from '@/components/ui/badge';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { WorkflowStatus, WORKFLOW_STATUS_CONFIG } from '@/types/workflow.types';
-import { Circle } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { WORKFLOW_STATUS_CONFIG, WorkflowStatus } from "@/types/workflow.types";
+import { Circle } from "lucide-react";
+import * as React from "react";
 
 /**
  * WorkflowStatusBadge Props
@@ -28,11 +33,11 @@ export const WorkflowStatusBadge: React.FC<WorkflowStatusBadgeProps> = ({
   const config = WORKFLOW_STATUS_CONFIG[status];
 
   const badgeContent = (
-    <Badge variant={config.variant} className={cn('gap-1.5', className)}>
+    <Badge variant={config.variant} className={cn("gap-1.5", className)}>
       <Circle
         className={cn(
-          'h-2 w-2',
-          status === WorkflowStatus.RUNNING && 'animate-pulse fill-current'
+          "h-2 w-2",
+          status === WorkflowStatus.RUNNING && "animate-pulse fill-current"
         )}
       />
       {config.label}
@@ -55,4 +60,4 @@ export const WorkflowStatusBadge: React.FC<WorkflowStatusBadgeProps> = ({
   );
 };
 
-WorkflowStatusBadge.displayName = 'WorkflowStatusBadge';
+WorkflowStatusBadge.displayName = "WorkflowStatusBadge";

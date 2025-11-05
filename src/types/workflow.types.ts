@@ -4,11 +4,11 @@
  */
 
 export enum WorkflowStatus {
-  DRAFT = 'draft',
-  RUNNING = 'running',
-  PUBLISHED = 'published',
-  PAUSED = 'paused',
-  FAILED = 'failed',
+  DRAFT = "draft",
+  RUNNING = "running",
+  PUBLISHED = "published",
+  PAUSED = "paused",
+  FAILED = "failed",
 }
 
 export interface Workflow {
@@ -23,7 +23,7 @@ export interface Workflow {
 export interface WorkflowSettings {
   autoRun: boolean;
   notifications: boolean;
-  logLevel: 'info' | 'debug' | 'error';
+  logLevel: "info" | "debug" | "error";
   retryOnFailure: boolean;
   maxRetries: number;
 }
@@ -34,29 +34,29 @@ export interface WorkflowSettings {
  */
 export const WORKFLOW_STATUS_CONFIG = {
   [WorkflowStatus.DRAFT]: {
-    label: 'Draft',
-    variant: 'secondary' as const,
-    description: 'Workflow is in draft mode',
+    label: "Draft",
+    variant: "secondary" as const,
+    description: "Workflow is in draft mode",
   },
   [WorkflowStatus.RUNNING]: {
-    label: 'Running',
-    variant: 'default' as const,
-    description: 'Workflow is currently running',
+    label: "Running",
+    variant: "default" as const,
+    description: "Workflow is currently running",
   },
   [WorkflowStatus.PUBLISHED]: {
-    label: 'Published',
-    variant: 'default' as const,
-    description: 'Workflow is published and ready',
+    label: "Published",
+    variant: "default" as const,
+    description: "Workflow is published and ready",
   },
   [WorkflowStatus.PAUSED]: {
-    label: 'Paused',
-    variant: 'outline' as const,
-    description: 'Workflow is paused',
+    label: "Paused",
+    variant: "outline" as const,
+    description: "Workflow is paused",
   },
   [WorkflowStatus.FAILED]: {
-    label: 'Failed',
-    variant: 'destructive' as const,
-    description: 'Workflow execution failed',
+    label: "Failed",
+    variant: "destructive" as const,
+    description: "Workflow execution failed",
   },
 } as const;
 
@@ -69,7 +69,10 @@ export const isRunningWorkflow = (workflow: Workflow): boolean => {
 };
 
 export const canPublishWorkflow = (workflow: Workflow): boolean => {
-  return workflow.status === WorkflowStatus.DRAFT || workflow.status === WorkflowStatus.PAUSED;
+  return (
+    workflow.status === WorkflowStatus.DRAFT ||
+    workflow.status === WorkflowStatus.PAUSED
+  );
 };
 
 export const canRunWorkflow = (workflow: Workflow): boolean => {

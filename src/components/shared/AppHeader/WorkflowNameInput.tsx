@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Edit2, Check, X } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
+import { Check, Edit2, X } from "lucide-react";
+import * as React from "react";
 
 /**
  * WorkflowNameInput Props
@@ -48,16 +48,16 @@ export const WorkflowNameInput: React.FC<WorkflowNameInputProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSave();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
       handleCancel();
     }
   };
 
   if (isEditing) {
     return (
-      <div className={cn('flex items-center gap-2', className)}>
+      <div className={cn("flex items-center gap-2", className)}>
         <Input
           ref={inputRef}
           type="text"
@@ -89,7 +89,7 @@ export const WorkflowNameInput: React.FC<WorkflowNameInputProps> = ({
   }
 
   return (
-    <div className={cn('flex items-center gap-2 group', className)}>
+    <div className={cn("flex items-center gap-2 group", className)}>
       <h1 className="text-lg font-semibold truncate">{name}</h1>
       <Button
         size="sm"
@@ -104,4 +104,4 @@ export const WorkflowNameInput: React.FC<WorkflowNameInputProps> = ({
   );
 };
 
-WorkflowNameInput.displayName = 'WorkflowNameInput';
+WorkflowNameInput.displayName = "WorkflowNameInput";
