@@ -53,7 +53,7 @@ export function SignupForm({
             onClick={() => setShowEmailForm(true)}
           >
             <UserPlus />
-            E-posta ile Hesap Oluştur
+            Continue with Email
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Button>
         </div>
@@ -68,7 +68,7 @@ export function SignupForm({
             onClick={() => setShowEmailForm(false)}
           >
             <ChevronLeft />
-            Geri Dön
+            Go Back
           </Button>
 
           {/* Signup Form */}
@@ -86,49 +86,41 @@ export function SignupForm({
               <DynamicFormField
                 control={form.control}
                 disabled={isLoading}
-                label="Kullanıcı Adı"
+                label="Username"
                 name="username"
-                placeholder="Kullanıcı adınız"
+                placeholder="Your username"
                 type="text"
               />
 
               <DynamicFormField
                 control={form.control}
                 disabled={isLoading}
-                label="E-posta Adresi"
+                label="Email Address"
                 name="email"
-                placeholder="ornek@email.com"
+                placeholder="example@email.com"
                 type="email"
               />
 
               <DynamicFormField
                 control={form.control}
                 disabled={isLoading}
-                label="Şifre"
+                label="Password"
                 name="password"
-                placeholder="Şifreniz"
+                placeholder="Your password"
                 type="password"
               />
 
               <DynamicFormField
                 control={form.control}
                 disabled={isLoading}
-                label="Şifreyi Onayla"
+                label="Confirm Password"
                 name="confirmPassword"
-                placeholder="Şifreniz"
+                placeholder="Your password"
                 type="password"
-              />
-
-              <DynamicFormField
-                checkboxLabel="Kullanım Koşullarını Kabul Ediyorum"
-                control={form.control}
-                disabled={isLoading}
-                name="agreeToTerms"
-                type="checkbox"
               />
 
               <Button className="w-full" disabled={isLoading} type="submit">
-                {isLoading ? <Spinner /> : "Hesap Oluştur"}
+                {isLoading ? <Spinner /> : "Create Account"}
                 {!isLoading && <ArrowRight />}
               </Button>
             </form>

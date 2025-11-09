@@ -37,6 +37,7 @@ export function LoginForm({
   });
 
   const handleSubmit = async (data: LoginFormData) => {
+    event?.preventDefault();
     await onSubmit(data);
   };
 
@@ -100,13 +101,11 @@ export function LoginForm({
               />
 
               <div className="flex items-center justify-end">
-                <Link href="/forgot-password">
-                  <Button
-                    className="px-0 font-normal text-sm text-blue-400 hover:text-blue-300"
-                    variant="link"
-                  >
-                    Forgot Password
-                  </Button>
+                <Link
+                  href="/forgot-password"
+                  className="text-sm font-medium text-primary hover:underline"
+                >
+                  Forgot Password
                 </Link>
               </div>
 

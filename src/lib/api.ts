@@ -102,7 +102,12 @@ axiosInstance.interceptors.response.use(
       ? Date.now() - originalRequest.startTime
       : 0;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/auth/login") &&
+      !originalRequest.url.includes("/auth/signup")
+    ) {
       if (originalRequest.url?.includes("/auth/refresh")) {
         logger.error("Refresh token failed, logging out");
 

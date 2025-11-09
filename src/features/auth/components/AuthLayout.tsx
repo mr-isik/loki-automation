@@ -93,7 +93,7 @@ export function AuthLayout({
         </div>
 
         {/* Auth Card with Glass Morphism */}
-        <Card className="w-full flex-1 border-border shadow-lg">
+        <Card className="w-full flex-1">
           {/* Card Glow Effect */}
           <div className="absolute inset-0 bg-linear-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" />
 

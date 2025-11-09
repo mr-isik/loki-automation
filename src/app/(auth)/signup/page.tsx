@@ -41,7 +41,7 @@ export default function SignupPage() {
         }
 
         if (loginSuccess && loginData) {
-          setAuthTokens(loginData.accessToken, loginData.refreshToken);
+          setAuthTokens(loginData.access_token, loginData.refresh_token);
 
           router.push("/app");
         }

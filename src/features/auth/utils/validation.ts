@@ -13,8 +13,8 @@ export const loginSchema = z.object({
 });
 
 export const loginResponseSchema = z.object({
-  accessToken: z.string(),
-  refreshToken: z.string(),
+  access_token: z.string(),
+  refresh_token: z.string(),
 });
 
 export const verifyOauthResponseSchema = z.object({

@@ -26,9 +26,9 @@ export default function LoginPage() {
       const { data, error, success } = await AuthAPI.login(_data);
 
       if (success && data) {
-        setAuthTokens(data.accessToken, data.refreshToken);
+        setAuthTokens(data.access_token, data.refresh_token);
 
-        const callbackUrl = searchParams.get("callbackUrl") || "/files";
+        const callbackUrl = searchParams.get("callbackUrl") || "/app";
 
         router.push(callbackUrl);
       } else if (error) {

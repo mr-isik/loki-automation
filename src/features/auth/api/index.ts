@@ -29,11 +29,14 @@ export const AuthAPI = {
 
   async signup(request: SignupFormData) {
     const { data, error, success } = await apiClient.post(
-      `${AUTH_PATH}/signup`,
+      `${AUTH_PATH}/register`,
       {
-        username: request.username,
+        name: request.username,
         email: request.email,
         password: request.password,
+      },
+      {
+        response: loginResponseSchema,
       }
     );
 
