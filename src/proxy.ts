@@ -84,7 +84,7 @@ function getRouteType(pathname: string): "protected" | "auth" | "public" {
  * Main middleware function
  * Handles authentication-based routing logic
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const authenticated = isAuthenticated(request);
   const routeType = getRouteType(pathname);

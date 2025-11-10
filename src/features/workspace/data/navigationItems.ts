@@ -14,7 +14,7 @@ export const navigationGroups: NavigationGroup[] = [
         id: "home",
         label: "Home",
         icon: Home,
-        href: "/",
+        href: "/app",
       },
       {
         id: "workflows",
@@ -27,7 +27,7 @@ export const navigationGroups: NavigationGroup[] = [
         label: "Runs",
         icon: Play,
         href: "/runs",
-        badge: 3, // Active runs count
+        badge: 3,
       },
       {
         id: "logs",
