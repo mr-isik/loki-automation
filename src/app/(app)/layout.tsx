@@ -14,7 +14,7 @@ const layout = ({ children }: Props) => {
       <WorkspaceHandler>
         <main className="flex-1 w-full flex flex-col relative">
           <AppHeader />
-          <div className="flex-1 overflow-auto">{children}</div>
+          <div className="flex-1 overflow-auto pt-16">{children}</div>
         </main>
       </WorkspaceHandler>
     </SidebarProvider>

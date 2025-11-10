@@ -6,9 +6,7 @@ export const WorkspaceResponseSchema = z.object({
   created_at: z.string(),
 });
 
-export const WorkspacesResponseSchema = z
-  .array(WorkspaceResponseSchema)
-  .nullable();
+export const WorkspacesResponseSchema = z.array(WorkspaceResponseSchema);
 
 export type Workspace = z.infer<typeof WorkspaceResponseSchema>;
 

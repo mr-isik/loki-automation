@@ -69,7 +69,7 @@ export const AuthAPI = {
 
   async refreshToken(refreshToken: string) {
     const { data, error, success } = await apiClient.post(
-      `${AUTH_PATH}/refresh`,
+      `${AUTH_PATH}/refresh-token`,
       { refresh_token: refreshToken },
       {
         response: refreshTokenResponseSchema,

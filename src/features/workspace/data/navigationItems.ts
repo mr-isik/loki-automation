@@ -6,7 +6,9 @@
 import { FileText, Home, Play, Settings, Workflow } from "lucide-react";
 import { NavigationGroup } from "../types/navigation.types";
 
-export const navigationGroups: NavigationGroup[] = [
+export const getNavigationGroups = (
+  workspaceId?: string
+): NavigationGroup[] => [
   {
     id: "main",
     items: [
@@ -14,26 +16,28 @@ export const navigationGroups: NavigationGroup[] = [
         id: "home",
         label: "Home",
         icon: Home,
-        href: "/app",
+        href: workspaceId ? `/workspace/${workspaceId}` : "/workspace",
       },
       {
         id: "workflows",
         label: "Workflows",
         icon: Workflow,
-        href: "/workflows",
+        href: workspaceId
+          ? `/workspace/${workspaceId}/workflows`
+          : "/workflows",
       },
       {
         id: "runs",
         label: "Runs",
         icon: Play,
-        href: "/runs",
+        href: workspaceId ? `/workspace/${workspaceId}/runs` : "/runs",
         badge: 3,
       },
       {
         id: "logs",
         label: "Logs",
         icon: FileText,
-        href: "/logs",
+        href: workspaceId ? `/workspace/${workspaceId}/logs` : "/logs",
       },
     ],
   },
@@ -45,7 +49,7 @@ export const navigationGroups: NavigationGroup[] = [
         id: "settings",
         label: "Settings",
         icon: Settings,
-        href: "/settings",
+        href: workspaceId ? `/workspace/${workspaceId}/settings` : "/settings",
       },
     ],
   },

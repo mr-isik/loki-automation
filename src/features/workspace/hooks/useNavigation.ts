@@ -3,23 +3,26 @@
  * Following Single Responsibility Principle
  */
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useMemo } from "react";
-import { navigationGroups } from "../data/navigationItems";
+import { getNavigationGroups } from "../data/navigationItems";
 import { NavigationGroup } from "../types/navigation.types";
 
 export const useNavigation = () => {
   const pathname = usePathname();
+  const params = useParams();
+  const workspaceId = params.workspaceId as string | undefined;
 
   const activeNavigationGroups: NavigationGroup[] = useMemo(() => {
-    return navigationGroups.map((group) => ({
+    const groups = getNavigationGroups(workspaceId);
+    return groups.map((group) => ({
       ...group,
       items: group.items.map((item) => ({
         ...item,
         isActive: pathname === item.href,
       })),
     }));
-  }, [pathname]);
+  }, [pathname, workspaceId]);
 
   const activeItem = useMemo(() => {
     for (const group of activeNavigationGroups) {

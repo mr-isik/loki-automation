@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Check, ChevronDown, Plus } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useWorkspaces } from "../../hooks/useQueries";
 import { useWorkspace } from "../../hooks/useWorkspace";
@@ -40,9 +41,27 @@ const getWorkspaceColor = (index: number) => {
 };
 
 export const WorkspaceSwitcher = () => {
+  const router = useRouter();
+  const params = useParams();
+  const currentWorkspaceId = params.workspaceId as string | undefined;
   const { currentWorkspace, setCurrentWorkspace } = useWorkspace();
   const { data: workspaces, isLoading } = useWorkspaces();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+  const handleWorkspaceSwitch = (workspace: {
+    id: string;
+    name: string;
+    created_at: string;
+  }) => {
+    setCurrentWorkspace(workspace);
+    // Navigate to the new workspace
+    router.push(`/workspace/${workspace.id}`);
+  };
+
+  // Determine current workspace from URL if available
+  const displayWorkspace = currentWorkspaceId
+    ? workspaces?.find((w) => w.id === currentWorkspaceId) || currentWorkspace
+    : currentWorkspace;
 
   if (isLoading) {
     return (
@@ -79,16 +98,16 @@ export const WorkspaceSwitcher = () => {
                       backgroundColor:
                         getWorkspaceColor(
                           workspaces?.findIndex(
-                            (w) => w.id === currentWorkspace?.id
+                            (w) => w.id === displayWorkspace?.id
                           ) ?? 0
                         ) || "#6B7280",
                     }}
                   >
-                    {currentWorkspace?.name.charAt(0).toUpperCase() || "W"}
+                    {displayWorkspace?.name.charAt(0).toUpperCase() || "W"}
                   </div>
                   <div className="flex flex-col items-start flex-1 min-w-0">
                     <span className="text-sm font-semibold truncate w-full">
-                      {currentWorkspace?.name || "Select Workspace"}
+                      {displayWorkspace?.name || "Select Workspace"}
                     </span>
                     <span className="text-xs text-muted-foreground truncate w-full">
                       {workspaces?.length || 0} workspace
@@ -112,7 +131,7 @@ export const WorkspaceSwitcher = () => {
                 workspaces.map((workspace, index) => (
                   <DropdownMenuItem
                     key={workspace.id}
-                    onClick={() => setCurrentWorkspace(workspace)}
+                    onClick={() => handleWorkspaceSwitch(workspace)}
                     className="gap-3 cursor-pointer"
                   >
                     <div
@@ -130,7 +149,7 @@ export const WorkspaceSwitcher = () => {
                         {new Date(workspace.created_at).toLocaleDateString()}
                       </span>
                     </div>
-                    {currentWorkspace?.id === workspace.id && (
+                    {displayWorkspace?.id === workspace.id && (
                       <Check className="h-4 w-4 shrink-0" />
                     )}
                   </DropdownMenuItem>

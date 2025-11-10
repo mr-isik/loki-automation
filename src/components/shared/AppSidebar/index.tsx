@@ -1,10 +1,12 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
+import { WorkflowsSection } from "@/features/workflow/components/WorkflowsSection";
 import { Navigation } from "@/features/workspace/components/Navigation";
 import { WorkspaceSwitcher } from "@/features/workspace/components/WorkspaceSwitcher";
 
@@ -16,6 +18,7 @@ import { WorkspaceSwitcher } from "@/features/workspace/components/WorkspaceSwit
  * Features:
  * - Workspace switcher
  * - Navigation menu with page links
+ * - Workflows section for current workspace
  * - Clean and minimal design
  */
 export function AppSidebar() {
@@ -29,6 +32,8 @@ export function AppSidebar() {
       {/* Navigation Menu */}
       <SidebarContent className="px-2 py-4">
         <Navigation />
+        <Separator className="my-4" />
+        <WorkflowsSection />
       </SidebarContent>
     </Sidebar>
   );
