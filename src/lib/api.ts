@@ -108,7 +108,7 @@ axiosInstance.interceptors.response.use(
       !originalRequest.url.includes("/auth/login") &&
       !originalRequest.url.includes("/auth/signup")
     ) {
-      if (originalRequest.url?.includes("/auth/refresh")) {
+      if (originalRequest.url?.includes("/auth/refresh-token")) {
         logger.error("Refresh token failed, logging out");
 
         if (typeof window !== "undefined") {
@@ -218,7 +218,6 @@ class ApiClient {
       responseType,
     } = requestConfig;
 
-    // Request validation
     if (
       this.config.enableValidation &&
       !skipValidation &&
