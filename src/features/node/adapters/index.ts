@@ -8,12 +8,7 @@ import { AutomationNode, NodeType } from "@/types/node.types";
 import { Edge, Node } from "@xyflow/react";
 import { WorkflowNodeResponse } from "../validation";
 
-/**
- * Convert API node to ReactFlow node
- * Following Dependency Inversion - Depends on interfaces, not concrete types
- */
 export const apiNodeToReactFlowNode = (apiNode: WorkflowNodeResponse): Node => {
-  // Map API data to AutomationNode format
   const automationNode: AutomationNode = {
     id: apiNode.id,
     name: apiNode.data.label || apiNode.data.name || "Untitled Node",
@@ -21,7 +16,6 @@ export const apiNodeToReactFlowNode = (apiNode: WorkflowNodeResponse): Node => {
     description: apiNode.data.description || "",
     icon: apiNode.data.icon || "zap",
     category: apiNode.data.category || "General",
-    // Type-specific properties (will be available based on type)
     ...apiNode.data,
   } as AutomationNode;
 
@@ -40,9 +34,6 @@ export const apiNodeToReactFlowNode = (apiNode: WorkflowNodeResponse): Node => {
   };
 };
 
-/**
- * Convert ReactFlow node to API node format
- */
 export const reactFlowNodeToApiNode = (node: Node, workflowId: string) => {
   return {
     position_x: node.position.x,
@@ -53,9 +44,6 @@ export const reactFlowNodeToApiNode = (node: Node, workflowId: string) => {
   };
 };
 
-/**
- * Convert API edge to ReactFlow edge
- */
 export const apiEdgeToReactFlowEdge = (apiEdge: {
   id: string;
   source_node_id: string;
@@ -68,18 +56,13 @@ export const apiEdgeToReactFlowEdge = (apiEdge: {
     id: apiEdge.id,
     source: apiEdge.source_node_id,
     target: apiEdge.target_node_id,
-    // ReactFlow uses null for default handles, not "default" string
-    sourceHandle:
-      apiEdge.source_handle === "default" ? null : apiEdge.source_handle,
-    targetHandle:
-      apiEdge.target_handle === "default" ? null : apiEdge.target_handle,
+    // Don't specify handle if it's "default" - let ReactFlow handle it
+    sourceHandle: undefined,
+    targetHandle: undefined,
     animated: true,
   };
 };
 
-/**
- * Convert ReactFlow connection to API edge format
- */
 export const reactFlowConnectionToApiEdge = (params: {
   source: string;
   target: string;

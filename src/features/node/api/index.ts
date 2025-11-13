@@ -1,10 +1,13 @@
 import { apiClient } from "@/lib/api";
 import {
   CreateWorkflowEdgeRequest,
+  createWorkflowEdgeRequestSchema,
   CreateWorkflowNodeRequest,
   nodeTemplatesResponseSchema,
   UpdateWorkflowEdgeRequest,
   UpdateWorkflowNodeRequest,
+  workflowEdgeResponseSchema,
+  workflowNodeResponseSchema,
   workflowNodesResponseSchema,
 } from "../validation";
 import { workflowEdgesResponseSchema } from "./../validation/index";
@@ -21,7 +24,9 @@ export const nodeAPI = {
   },
 
   createWorkflowNode: async (payload: CreateWorkflowNodeRequest) => {
-    const { data, error } = await apiClient.post("/workflow-nodes", payload);
+    const { data, error } = await apiClient.post("/workflow-nodes", payload, {
+      response: workflowNodeResponseSchema,
+    });
 
     return { data, error };
   },
@@ -55,7 +60,10 @@ export const nodeAPI = {
 
   /* Edges */
   createWorkflowEdge: async (payload: CreateWorkflowEdgeRequest) => {
-    const { data, error } = await apiClient.post("/workflow-edges", payload);
+    const { data, error } = await apiClient.post("/workflow-edges", payload, {
+      request: createWorkflowEdgeRequestSchema,
+      response: workflowEdgeResponseSchema,
+    });
 
     return { data, error };
   },
@@ -66,7 +74,10 @@ export const nodeAPI = {
   ) => {
     const { data, error } = await apiClient.patch(
       `/workflow-edges/${edgeId}`,
-      payload
+      payload,
+      {
+        response: workflowEdgeResponseSchema,
+      }
     );
     return { data, error };
   },

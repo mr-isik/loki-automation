@@ -137,12 +137,7 @@ export const useDeleteWorkflowNode = () => {
  */
 export const useCreateWorkflowEdge = () => {
   return useMutation({
-    mutationFn: async ({
-      payload,
-    }: {
-      payload: CreateWorkflowEdgeRequest;
-      workflowId: string;
-    }) => {
+    mutationFn: async ({ payload }: { payload: CreateWorkflowEdgeRequest }) => {
       const { data, error } = await nodeAPI.createWorkflowEdge(payload);
       if (error) {
         throw new Error(error?.message || "Failed to create workflow edge");

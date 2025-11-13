@@ -52,6 +52,7 @@ export type NodeTemplateResponse = z.infer<typeof nodeTemplateResponseSchema>;
 
 /* Edges */
 export const createWorkflowEdgeRequestSchema = z.object({
+  workflow_id: z.uuid(),
   source_handle: z.string(),
   source_node_id: z.uuid(),
   target_handle: z.string(),
